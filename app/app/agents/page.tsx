@@ -9,9 +9,17 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 export default function AgentsPage() {
-  const agents = useQuery(api.agents.listAgents, {}) ?? [];
-  const createAgent = useMutation(api.agents.createAgent);
-  const setActive = useMutation(api.agents.setActiveAgent);
+  // const agents = useQuery(api.agents.listAgents, {}) ?? [];
+  // const createAgent = useMutation(api.agents.createAgent);
+  // const setActive = useMutation(api.agents.setActiveAgent);
+
+  const agents = [
+    { _id: "1", name: "Support Agent", isActive: true },
+    { _id: "2", name: "Sales Agent", isActive: false },
+  ];
+  const createAgent = (args: any) => { };
+  const setActive = (args: any) => { };
+
   const [name, setName] = useState("Support Agent");
   const [prompt, setPrompt] = useState("You are helpful and concise.");
 

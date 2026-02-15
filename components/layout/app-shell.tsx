@@ -27,7 +27,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             return (
               <Link
                 key={item.href}
-                href={item.href}
+                href={item.href as any}
                 className={cn(
                   "flex items-center gap-2 rounded-md px-3 py-2 text-sm",
                   pathname === item.href ? "bg-muted text-foreground" : "text-muted-foreground hover:bg-muted/60",

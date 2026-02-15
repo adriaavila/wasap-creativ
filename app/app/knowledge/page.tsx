@@ -12,8 +12,14 @@ export default function KnowledgePage() {
   const [search, setSearch] = useState("");
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const docs = useQuery(api.knowledge.listKnowledgeDocs, { search }) ?? [];
-  const create = useMutation(api.knowledge.createKnowledgeDoc);
+  // const docs = useQuery(api.knowledge.listKnowledgeDocs, { search }) ?? [];
+  // const create = useMutation(api.knowledge.createKnowledgeDoc);
+
+  const docs = [
+    { _id: "d1", title: "Return Policy", body: "Items can be returned within 30 days." },
+    { _id: "d2", title: "Shipping Rates", body: "Standard shipping is $5 or free over $50." },
+  ];
+  const create = (args: any) => { };
 
   return (
     <div className="space-y-4">

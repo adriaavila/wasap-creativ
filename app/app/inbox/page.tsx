@@ -13,15 +13,29 @@ export default function InboxPage() {
   const [search, setSearch] = useState("");
   const [selectedConversationId, setSelectedConversationId] = useState<string | null>(null);
   const [draft, setDraft] = useState("");
-  const conversations = useQuery(api.inbox.listConversations, { search, filters: {} }) ?? [];
-  const selectedId = selectedConversationId ?? conversations[0]?._id ?? null;
+  // const conversations = useQuery(api.inbox.listConversations, { search, filters: {} }) ?? [];
+  // const selectedId = selectedConversationId ?? conversations[0]?._id ?? null;
+  // const messages = usePaginatedQuery(
+  //   api.inbox.listMessages,
+  //   selectedId ? { conversationId: selectedId as never } : "skip",
+  //   { initialNumItems: 30 },
+  // );
+  // const send = useMutation(api.inbox.sendOperatorMessage);
 
-  const messages = usePaginatedQuery(
-    api.inbox.listMessages,
-    selectedId ? { conversationId: selectedId as never } : "skip",
-    { initialNumItems: 30 },
-  );
-  const send = useMutation(api.inbox.sendOperatorMessage);
+  const conversations = [
+    { _id: "c1", contactName: "Alice", unreadCount: 2, lastMessageAt: Date.now() },
+    { _id: "c2", contactName: "Bob", unreadCount: 0, lastMessageAt: Date.now() - 3600000 },
+  ];
+  const selectedId = selectedConversationId ?? conversations[0]?._id ?? null;
+  const messages = {
+    results: [
+      { _id: "m1", role: "user", content: "Hello!" },
+      { _id: "m2", role: "assistant", content: "Hi there! How can I help?" },
+    ],
+    status: "CanLoadMore",
+    loadMore: () => { },
+  };
+  const send = (args: any) => Promise.resolve(null);
 
   return (
     <div className="grid min-h-[70vh] gap-4 lg:grid-cols-[320px_1fr_300px]">
